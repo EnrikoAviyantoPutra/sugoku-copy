@@ -10,7 +10,7 @@ import { statusValidate } from '../store/action'
 
 export default function Home({ navigation }) {
   const dispatch = useDispatch()
-  const [playerName, setPlayerName] = useState()
+  const [playerName, setPlayerName] = useState('')
   const [checked, setChecked] = useState('')
   const loading = useSelector(state => state.loading.loading)
   console.log(playerName)
@@ -28,9 +28,9 @@ export default function Home({ navigation }) {
     dispatch(statusValidate('unsolved'))
     navigation.navigate('Game', [playerName, checked])
     setPlayerName('')
-    setChecked('')
+    setChecked('easy')
 
-  }
+  } 
   return (
     <>
       <View style={styles.container}>
@@ -48,7 +48,7 @@ export default function Home({ navigation }) {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={styles.title_button}>Easy</Text>
             <RadioButton
-              value="easy"
+              value="easy"  
               status={checked === 'easy' ? 'checked' : 'unchecked'}
               onPress={() => setChecked('easy')}
             />
@@ -71,7 +71,7 @@ export default function Home({ navigation }) {
           </View>
         </View>
         <View>
-          <Button title="START" style={{ margin: 10 }} disabled={(playerName && checked) === undefined ? true : false} onPress={() => changePage()} />
+          <Button title="START" style={{ margin: 10 }} disabled={(playerName && checked) === '' ? true : false} onPress={() => changePage()} />
         </View>
       </View>
 
